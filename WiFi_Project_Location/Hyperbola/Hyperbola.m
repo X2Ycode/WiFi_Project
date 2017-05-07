@@ -18,6 +18,12 @@ function [ result ] = Hyperbola(arrPoint, arrDistance)
     % 检验函数输入参数格式
     CheckArray(arrPoint, 3, 2);
     CheckArray(arrDistance, 3, 1);
+    
+    for i =1:3
+        [x,b]=scircle1(arrPoint(i,1),arrPoint(i,2),0.1);
+        plot(x,b); hold on;
+    end
+    
     syms pointX pointY;
     % 计算双曲线差值
     expressionB = power(arrPoint(2, 1), 2) + power(arrPoint(2, 2), 2) - ...
@@ -33,4 +39,7 @@ function [ result ] = Hyperbola(arrPoint, arrDistance)
 	resultTemp = solve(expressionB, expressionC, pointX, pointY);
     result = [double(resultTemp.pointX(1)), double(resultTemp.pointY(1))];
     toc;
+    
+	[a,b]=scircle1(real(result(1)),real(result(2)),0.1);
+    plot(a,b); hold on;
 end

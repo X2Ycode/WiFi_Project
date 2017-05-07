@@ -22,6 +22,12 @@ function [ result ] = LeastSquares(arrPoint, arrDistance)
     if ~(sizePoint == sizeDistance)
         error('ERROR Binranging 1 点个数与距离个数不匹配')
     end
+    
+	for i =1:7
+        [x,y]=scircle1(arrPoint(i,1),arrPoint(i,2),0.1);
+        plot(x,y,'k'); hold on;
+	end
+    
     matrixA = zeros(sizePoint - 1, 2);
     for i = 1 : sizePoint - 1
         matrixA(i, 1) = (arrPoint(i, 1) - arrPoint(sizePoint, 1)) * 2;
@@ -35,4 +41,8 @@ function [ result ] = LeastSquares(arrPoint, arrDistance)
     end
     result = (matrixA \ matrixB).';
     toc;
+    
+    [a,b]=scircle1(real(result(1)),real(result(2)),0.1);
+    plot(a,b,'r'); hold on;
+    
 end

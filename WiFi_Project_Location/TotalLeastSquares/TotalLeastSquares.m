@@ -11,8 +11,8 @@ function [ result ] = TotalLeastSquares(arrPoint, arrDistance)
 % error                 错误：ERROR 1 点个数与距离个数不匹配
 
 % 袁鑫-2015302580136-国际软件学院 修改于 2017年4月8日10:34:51 编写和修改记录，用于软件档案管理。
-    tic;
-    	% 检验函数输入参数个数
+
+	% 检验函数输入参数个数
     if nargin ~= 2
         error('ERROR Binranging 0 参数个数错误');
     end
@@ -23,6 +23,12 @@ function [ result ] = TotalLeastSquares(arrPoint, arrDistance)
         error('ERROR Binranging 1 点个数与距离个数不匹配')
     end
     
+	for i =1:7
+        [x,y]=scircle1(arrPoint(i,1),arrPoint(i,2),0.1);
+        plot(x,y,'k'); hold on;
+    end
+    
+    tic;
     matrixA = zeros(sizePoint - 1, 2);
     for i = 1 : sizePoint - 1
         matrixA(i, 1) = (arrPoint(i, 1) - arrPoint(sizePoint, 1)) * 2;
@@ -57,4 +63,7 @@ function [ result ] = TotalLeastSquares(arrPoint, arrDistance)
     result(1) = invSr(1 + 1, 1) ./ invSr(1, 1);
     result(2) = invSr(2 + 1, 1) ./ invSr(1, 1);
     toc;
+    
+    [a,b]=scircle1(real(result(1)),real(result(2)),0.1);
+    plot(a,b,'r'); hold on;
 end

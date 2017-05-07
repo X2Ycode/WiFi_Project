@@ -20,7 +20,7 @@ function [ result ] = GaussianFilter(arrRSSI, probability)
     else
         error('ERROR GaussianFilter 0 参数个数错误');
     end 
-%     subplot(1, 2, 1), bar(1:numel(arrRSSI), arrRSSI);hold on;
+    subplot(1, 2, 1), bar(1:numel(arrRSSI), arrRSSI);hold on;
     % 计算RSSI数组期望、标准差
     rssiMea = mean(arrRSSI);
     rssiStd = std(arrRSSI);
@@ -36,6 +36,6 @@ function [ result ] = GaussianFilter(arrRSSI, probability)
         end
     end
     result(result == 0) = [];
-	subplot(1, 3, 3), bar(1:numel(result), result);hold on;
+	subplot(1, 2, 2), bar(1:numel(result), result);hold on;
     toc;
 end

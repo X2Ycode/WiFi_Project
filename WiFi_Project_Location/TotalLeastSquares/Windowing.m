@@ -9,7 +9,16 @@ function [ result ] = Windowing(V, r, j, k)
 % 袁鑫-2015302580136-国际软件学院 修改于 2017年4月8日10:35:16 编写和修改记录，用于软件档案管理。
     result = zeros(1, r);
     n = 1;
-    for i = k : k + r
+    
+    [~,col]=size(V);
+    
+    if col < k + r
+        endnum = col;
+    else
+        endnum = k + r;
+    end
+    
+    for i = k : endnum
         result(n) = V(i, j);
         n = n + 1;
     end

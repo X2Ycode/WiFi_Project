@@ -19,7 +19,7 @@ function [ result ] = SingularValueCorrect(arrRSSI, thresholdRSSI)
     else
         error('ERROR GaussianFilter 0 参数个数错误');
 	end
-%     subplot(1, 3, 1), bar(1:numel(arrRSSI), arrRSSI);hold on;
+    subplot(1, 3, 1), bar(1:numel(arrRSSI), arrRSSI);hold on;
     % 对RSSI数组第一个元素与最后一个元素进行奇异值校正
 	rssiMea = mean(arrRSSI(:));
     rssiFir = arrRSSI(1);
@@ -46,12 +46,6 @@ function [ result ] = SingularValueCorrect(arrRSSI, thresholdRSSI)
             arrRSSI(i)     = arrRSSI(i - 1);
             arrRSSI(i + 1) = arrRSSI(i + 2);
         end
-        %%
-        % 
-        %   for x = 1:10
-        %       disp(x)
-        %   end
-        % 
     end
     
     % 对RSSI数组突变值进行校正
@@ -61,14 +55,8 @@ function [ result ] = SingularValueCorrect(arrRSSI, thresholdRSSI)
            abs(arrRSSI(i - 1) - arrRSSI(i + 1)) < abs(arrRSSI(i - 1) - arrRSSI(i + 2))
             arrRSSI(i) = arrRSSI(i - 1);
         end
-        %%
-        % 
-        %   for x = 1:10
-        %       disp(x)
-        %   end
-        % 
     end
-%     subplot(1, 3, 2), bar(1:numel(arrRSSI), arrRSSI);hold on;
+    subplot(1, 3, 2), bar(1:numel(arrRSSI), arrRSSI);hold on;
     result = arrRSSI;
     toc;
 end

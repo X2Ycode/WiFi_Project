@@ -9,5 +9,8 @@ function [ result ] = FinalValue(arrRSSI)
         error('ERROR FinalValue 0 参数个数错误');
     end
 	CheckArray(arrRSSI, 1, 0);
-    result = geomean(arrRSSI);
+    for i=1:numel(arrRSSI)
+        arrRSSI(i)=arrRSSI(i)*(-1);
+    end
+    result = -1 * geomean(arrRSSI);
 end
